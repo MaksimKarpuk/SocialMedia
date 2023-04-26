@@ -1,10 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-interface IInitialState {
-  email: string | null;
-  token: string | null;
-  id: string | null;
-}
+import { IInitialState } from "../../interfases";
 
 const initialState: IInitialState = {
   email: null,

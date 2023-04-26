@@ -1,14 +1,6 @@
-import { initializeApp } from "firebase/app";
 
-interface IFirebase {
-  apiKey: string;
-  authDomain: string;
-  databaseURL: string;
-  projectId: string;
-  storageBucket: string;
-  messagingSenderId: number;
-  appId: string;
-}
+import { initializeApp } from "firebase/app";
+import { IFirebase } from "./interfases";
 
 const firebaseConfig: IFirebase = {
   apiKey: "AIzaSyBb5AcEP0WYa-NUDQ_rMBCVg9jTdhZUPng",
