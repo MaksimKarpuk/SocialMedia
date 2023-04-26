@@ -12,3 +12,9 @@ export interface IFirebase {
   messagingSenderId: number;
   appId: string;
 }
+
+export interface IUser {
+  first: string;
+  last: string;
+  born: number;
+}

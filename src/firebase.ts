@@ -1,6 +1,6 @@
-
 import { initializeApp } from "firebase/app";
-import { IFirebase } from "./interfases";
+import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import { IFirebase, IUser } from "./interfases";
 
 const firebaseConfig: IFirebase = {
   apiKey: "AIzaSyBb5AcEP0WYa-NUDQ_rMBCVg9jTdhZUPng",
@@ -14,3 +14,19 @@ const firebaseConfig: IFirebase = {
 };
 
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+export const addCollection = async (user: IUser) => {
+  try {
+    const userCollection = collection(db, "users");
+    const docRef = await addDoc(userCollection, user);
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+};
+export const getUserCollection = async () => {
+  const users = await getDocs(collection(db, "users"));
+  console.log(users.docs);
+};
+getUserCollection();

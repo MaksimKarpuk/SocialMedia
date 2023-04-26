@@ -20,7 +20,7 @@ const SignUp: FC = () => {
             token: user.refreshToken,
           })
         );
-        navigate("/");
+        navigate("/homepage");
       })
       .catch(() => alert("Invalid user"));
   };
