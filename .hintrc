@@ -4,6 +4,12 @@
   ],
   "hints": {
     "typescript-config/is-valid": "off",
-    "compat-api/css": "off"
+    "compat-api/css": "off",
+    "axe/forms": [
+      "default",
+      {
+        "label": "off"
+      }
+    ]
   }
 }

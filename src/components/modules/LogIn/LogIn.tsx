@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { useAppDispatch } from "../hooks/useTypedSelector";
+import { useAppDispatch } from "../../../hooks/useTypedSelector";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { setUser } from "../store/slices/userSlice";
-import Form from "./Form";
+import { setUser } from "../../../store/slices/userSlice";
+import Form from "../LoginForm/Form";
 
 const SignUp: FC = () => {
   const dispatch = useAppDispatch();

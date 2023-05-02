@@ -1,8 +1,8 @@
 import HomePage from "./pages/HomePage/HomePage";
 import WelcomePage from "./pages/WelcomePage/WelcomePage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import Errorpage from "./pages/ErrorPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import RegisterPage from "./pages/SignUpPage/SignUp";
+import Errorpage from "./pages/ErrorPage/ErrorPage";
 import Layout from "./layout/Layout";
 import { FC } from "react";
 import { Routes, Route } from "react-router-dom";
