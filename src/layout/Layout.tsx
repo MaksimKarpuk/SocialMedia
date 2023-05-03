@@ -1,6 +1,6 @@
 import { FC } from "react";
-import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
+import Header from "../components/modules/Header/Header";
+import Footer from "../components/modules/Footer/Footer";
 import style from "./styles.module.scss";
 
 interface IProps {

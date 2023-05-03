@@ -1,0 +1,9 @@
+@import "../../index.scss";
+
+.title {
+  color: $white;
+  @include H32;
+  margin: 5rem  0 0 0;
+  text-align: center;
+}
+

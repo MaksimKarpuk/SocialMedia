@@ -1,13 +1,12 @@
 import { FC } from "react";
-import { Link } from "react-router-dom";
 import Register from "../../components/modules/SignUp/SignUp";
+import style from "./styles.module.scss";
 
 const RegisterPage: FC = () => {
   return (
     <>
-      <h2>RegisterPage</h2>
+      <h2 className={style.title}>RegisterPage</h2>
       <Register />
-      <Link to="/login">Login</Link>
     </>
   );
 };

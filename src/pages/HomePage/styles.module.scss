@@ -1,1 +1,15 @@
 @import "../../index.scss";
+
+.homepage {
+  @include container;
+  padding: 1rem;
+  .homepage__title {
+    @include H32;
+    color: $white;
+    max-width: 40rem;
+    margin: 5rem 0 0 0;
+  }
+  .homepage__add_button {
+    margin: 2rem 0 0 0;
+  }
+}

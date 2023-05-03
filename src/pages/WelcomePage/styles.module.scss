@@ -1,5 +1,6 @@
 @import "../../index.scss";
 .container {
+  @include container;
   position: relative;
   .container__content {
     margin-top: 6rem;

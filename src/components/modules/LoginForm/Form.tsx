@@ -1,12 +1,15 @@
 import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 import InputEmail from "../../UI/InputLoginEmail/Input";
 import InputPass from "../../UI/InputLoginPassword/Input";
 import Button from "../../UI/ButtonSubmit/Button";
 import { IProps, IFormInput } from "./interfaces";
 import style from "./styles.module.scss";
+import { Link } from "react-router-dom";
 
 const Form: FC<IProps> = ({ title, handleClick }) => {
+  const location = useLocation();
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const {
@@ -36,7 +39,7 @@ const Form: FC<IProps> = ({ title, handleClick }) => {
           )}
         </div>
         <div className={(style.form__password, style.input)}>
-          <InputPass register={register} placeholder="password"  />
+          <InputPass register={register} placeholder="password" />
           {errors.password && errors.password.type === "required" && (
             <span>Enter a password</span>
           )}
@@ -49,6 +52,16 @@ const Form: FC<IProps> = ({ title, handleClick }) => {
         </div>
 
         <Button title={title} />
+        {location.pathname === "/login" && (
+          <div className={style.redirect}>
+            <Link to="/register">Create account</Link>
+          </div>
+        )}
+        {location.pathname === "/register" && (
+          <div className={style.redirect}>
+            <Link to="/register">Log In</Link>
+          </div>
+        )}
       </form>
     </>
   );

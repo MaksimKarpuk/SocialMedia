@@ -26,7 +26,7 @@ const SignUp: FC = () => {
   };
   return (
     <>
-      <Form title="Register" handleClick={handleRegister} />
+      <Form title="Sign Up" handleClick={handleRegister} />
     </>
   );
 };
