@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
+import { DevTool } from "@hookform/devtools";
 import { useLocation } from "react-router-dom";
 import InputEmail from "../../UI/InputLoginEmail/Input";
 import InputPass from "../../UI/InputLoginPassword/Input";
@@ -17,6 +18,7 @@ const Form: FC<IProps> = ({ title, handleClick }) => {
     handleSubmit,
     reset,
     formState: { errors },
+    control,
   } = useForm<IFormInput>({ mode: "onBlur" });
   const onSubmit = (data: IFormInput) => {
     handleClick(email, pass);
@@ -31,26 +33,12 @@ const Form: FC<IProps> = ({ title, handleClick }) => {
       <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={(style.form__email, style.input)}>
           <InputEmail register={register} placeholder="email" />
-          {errors.email && errors.email.type === "required" && (
-            <span>Enter a email</span>
-          )}
-          {errors.email && errors.email.type === "pattern" && (
-            <span>Invalid email value.</span>
-          )}
+          <div className={style.error}>{errors.email?.message}</div>
         </div>
         <div className={(style.form__password, style.input)}>
           <InputPass register={register} placeholder="password" />
-          {errors.password && errors.password.type === "required" && (
-            <span>Enter a password</span>
-          )}
-          {errors.password && errors.password.type === "pattern" && (
-            <span>
-              The password must contain at least eight characters, include
-              capital letters numbers and special characters.
-            </span>
-          )}
+          <div className={style.error}>{errors.password?.message}</div>
         </div>
-
         <Button title={title} />
         {location.pathname === "/login" && (
           <div className={style.redirect}>
@@ -59,10 +47,11 @@ const Form: FC<IProps> = ({ title, handleClick }) => {
         )}
         {location.pathname === "/register" && (
           <div className={style.redirect}>
-            <Link to="/register">Log In</Link>
+            <Link to="/login">Log In</Link>
           </div>
         )}
       </form>
+      <DevTool control={control} />
     </>
   );
 };

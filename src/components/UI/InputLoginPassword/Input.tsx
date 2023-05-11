@@ -11,11 +11,30 @@ const Input: FC<IProps> = ({ register, placeholder }) => {
         variant="outlined"
         type="password"
         autoComplete="current-password"
-        
         placeholder={placeholder}
         {...register("password", {
-          required: true,
-          pattern: /^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{7,}$/,
+          required: { value: true, message: "Password is required" },
+          validate: {
+            passLength: (fieldValue: string) => {
+              if (fieldValue.length < 7) {
+                return "At least 7 letters";
+              }
+            },
+            // specSymbol: (fieldValue: string) => {
+            //   if (
+            //     !fieldValue.includes("!") &&
+            //     !fieldValue.includes("@") &&
+            //     !fieldValue.includes("#") &&
+            //     !fieldValue.includes("$") &&
+            //     !fieldValue.includes("%") &&
+            //     !fieldValue.includes("^") &&
+            //     !fieldValue.includes("&") &&
+            //     !fieldValue.includes("*")
+            //   ) {
+            //     return "Need at least 1 special symbol (!@#$%^&*)";
+            //   }
+            // },
+          },
         })}
       />
     </>

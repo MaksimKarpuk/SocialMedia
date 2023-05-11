@@ -1,8 +1,7 @@
 import { FC } from "react";
 import { useForm } from "react-hook-form";
-// import FormCard from "../../Molecules/FormCard/FormCard";
+import { DevTool } from "@hookform/devtools";
 import style from "./styles.module.scss";
-import Popup from "./components/Popup/Popup";
 import InputFirstName from "./components/Inputs/InputFirstName";
 import InputSecondName from "./components/Inputs/InputSecondName";
 import InputSelector from "./components/Inputs/InputSelect";
@@ -13,72 +12,33 @@ import {
   useAppSelector,
   useAppDispatch,
 } from "../../../hooks/useTypedSelector";
-// import {
-//   setVisiblePopup,
-//   setUnvisiblePopup,
-//   addFormCard,
-//   getCardsFromLocalStorage,
-// } from "../../../store/Form";
 
 const NewForm: FC = () => {
-  //   const cards = useAppSelector((state) => state.Form.cards);
-  //   const popup = useAppSelector((state) => state.Form.popup);
   const dispatch = useAppDispatch();
   const {
     register,
-    // setValue,
     handleSubmit,
     reset,
     formState: { errors },
+    control,
   } = useForm({ mode: "onBlur" });
-  //   const openPopup = () => {
-  //     dispatch(setVisiblePopup(true));
-  //   };
-  //   const closePopup = () => {
-  //     dispatch(setUnvisiblePopup(false));
-  //   };
 
   const onSubmit = (data) => {
-    // dispatch(addFormCard(data));
-    // openPopup();
     console.log(data);
     reset();
   };
-  //   React.useEffect(() => {
-  //     dispatch(getCardsFromLocalStorage());
-  //   }, []);
-  //   const onChange = (e) => {
-  //     const files = e.target.files[0];
-  //     setValue("file", files);
-  //   };
+
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} data-testid="new-form">
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className={style.inputs__text}>
           <div className={style.text}>
-            <InputFirstName
-              label="First name:"
-              register={register}
-              placeholder="First name"
-            />
-            {errors?.firstName && (
-              <div
-                className={style.error}
-                data-testid="new-form-firstName-error"
-              >
-                Fill your first name
-              </div>
-            )}
+            <InputFirstName register={register} />
+            <div className={style.error}>{errors.firstName?.message}</div>
           </div>
           <div className={style.text}>
-            <InputSecondName
-              label=" Second name:"
-              register={register}
-              placeholder="Second name"
-            />
-            {errors?.secondName && (
-              <div className={style.error}>Fill your second name</div>
-            )}
+            <InputSecondName register={register} />
+            <div className={style.error}>{errors.secondName?.message}</div>
           </div>
         </div>
         <div className={style.input__date}>
@@ -104,12 +64,6 @@ const NewForm: FC = () => {
           <InputSelector label="Select your city:" register={register} />
           {errors?.city && <div className={style.error}>Select your city</div>}
         </div>
-        <div className={style.input__file}>
-          <label htmlFor="file">
-            Choose photo:
-            <input type="file" name="file" required />
-          </label>
-        </div>
         <div className={style.input__checkbox}>
           <div className={style.checkbox}>
             <InputCheckbox
@@ -125,21 +79,7 @@ const NewForm: FC = () => {
           Submit
         </button>
       </form>
-      {/* <div className={style.container__card}>
-        {cards.map((item) => (
-          <FormCard
-            key={item.id}
-            firstName={item.firstName}
-            secondName={item.secondName}
-            inputDate={item.date}
-            checkboxValue={item.checkbox}
-            radioValue={item.radio}
-            selectValue={item.city}
-            fileValue={item.file as BlobPart}
-          />
-        ))}
-      </div> */}
-      {/* <Popup visiblePopup={popup} setPopup={closePopup} /> */}
+      <DevTool control={control} />
     </>
   );
 };

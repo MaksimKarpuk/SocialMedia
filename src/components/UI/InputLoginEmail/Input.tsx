@@ -12,8 +12,11 @@ const Input: FC<IProps> = ({ register, placeholder }) => {
         type="email"
         placeholder={placeholder}
         {...register("email", {
-          required: true,
-          pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+          required: { value: true, message: "Email is required" },
+          pattern: {
+            value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+            message: "Invalid email value",
+          },
         })}
       />
     </>

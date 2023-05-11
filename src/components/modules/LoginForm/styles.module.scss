@@ -5,11 +5,12 @@
   gap: 1rem;
   max-width: 25rem;
   margin: 5rem auto 0 auto;
-  .input{
+  .input {
     display: flex;
     flex-direction: column;
-  }
-  span {
-    
+    .error {
+      color: $red;
+      @include H12;
+    }
   }
 }

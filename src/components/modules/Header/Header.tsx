@@ -50,7 +50,7 @@ const Header: FC = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to="/">JobService</Link>
+            <Link to="/homepage">JobService</Link>
           </Typography>
           {location.pathname === "/homepage" && (
             <div>

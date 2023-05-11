@@ -1,27 +1,43 @@
-import { FC } from 'react';
-import { UseFormRegister } from 'react-hook-form/dist/types';
+import { FC } from "react";
+import TextField from "@mui/material/TextField";
+import { UseFormRegister } from "react-hook-form/dist/types";
 
 interface IFormValues {
   firstName?: string;
 }
 
 interface IProps {
-  label: string;
   register: UseFormRegister<IFormValues>;
-  placeholder: string;
 }
-const InputText: FC<IProps> = ({ label, register, placeholder }: IProps) => {
+const InputText: FC<IProps> = ({ register }: IProps) => {
   return (
     <>
-      <label>
-        {label}
-        <input
-          placeholder={placeholder}
-          {...register('firstName', {
-            required: true,
-          })}
-        />
-      </label>
+      <TextField
+        id="outlined-basic"
+        label="First name"
+        variant="outlined"
+        sx={{ width: "25rem" }}
+        {...register("firstName", {
+          required: {
+            value: true,
+            message: "Required first name value",
+          },
+          maxLength: {
+            value: 15,
+            message: "Max length is 15 letters",
+          },
+          validate: {
+            capitalFirstLetter: (fieldValue: string) => {
+              if (
+                fieldValue.split("")[0] !==
+                fieldValue.split("")[0].toUpperCase()
+              ) {
+                return "First name must start with capital letter";
+              }
+            },
+          },
+        })}
+      />
     </>
   );
 };
