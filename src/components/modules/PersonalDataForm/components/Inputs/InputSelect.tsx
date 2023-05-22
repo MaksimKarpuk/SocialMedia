@@ -1,30 +1,28 @@
-import { FC } from 'react';
-import { UseFormRegister } from 'react-hook-form/dist/types';
+import { FC } from "react";
+import { UseFormRegister } from "react-hook-form/dist/types";
 
 interface IFormValues {
-  city?: string;
+  job?: string;
 }
 
 interface IProps {
-  label: string;
   register: UseFormRegister<IFormValues>;
 }
-const InputSelector: FC<IProps> = ({ label, register }) => (
+const InputSelector: FC<IProps> = ({ register }) => (
   <>
-    <label>{label}</label>
     <select
-      {...register('city', {
-        required: true,
+      {...register("job", {
+        required: {
+          value: true,
+          message: "Required field",
+        },
       })}
-      data-testid="new-form-select"
     >
-      <option value="">Select...</option>
-      <option value="Minsk">Minsk</option>
-      <option value="Brest">Brest</option>
-      <option value="Grodno">Grodno</option>
-      <option value="Vitebsk">Vitebsk</option>
-      <option value="Gomel">Gomel</option>
-      <option value="Mogilev">Mogilev</option>
+      <option value="">Select your job title</option>
+      <option value="Economist">Economist</option>
+      <option value="Enginer">Enginer</option>
+      <option value="Manager">Manager</option>
+      <option value="Repair enginer">Repair enginer</option>
     </select>
   </>
 );

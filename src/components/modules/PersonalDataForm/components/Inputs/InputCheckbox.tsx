@@ -1,8 +1,8 @@
-import { FC } from 'react';
-import { UseFormRegister } from 'react-hook-form/dist/types';
+import { FC } from "react";
+import { UseFormRegister } from "react-hook-form/dist/types";
 
 interface IFormValues {
-  checkbox?: string;
+  permition?: string;
 }
 
 interface IProps {
@@ -14,10 +14,9 @@ const InputCheckbox: FC<IProps> = ({ label, register }: IProps) => {
     <>
       <input
         type="checkbox"
-        {...register('checkbox', {
-          required: true,
+        {...register("permition", {
+          required: { value: true, message: "Required field" },
         })}
-        data-testid="new-form-checkbox"
       />
       <label>{label}</label>
     </>

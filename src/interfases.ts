@@ -2,7 +2,9 @@ export interface IInitialState {
   email: string | null;
   token: string | null;
   id: string | null;
+  tasks: [];
 }
+
 export interface IFirebase {
   apiKey: string;
   authDomain: string;
@@ -17,4 +19,13 @@ export interface IUser {
   first: string;
   last: string;
   born: number;
+}
+export interface IPersonalData {
+  birthdayDate: string;
+  firstName: string;
+  gender: string;
+  job: string;
+  secondName: string;
+  thirdName: string;
+  permition: boolean;
 }

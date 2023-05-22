@@ -1,5 +1,4 @@
 import { FC } from "react";
-import TextField from "@mui/material/TextField";
 import { UseFormRegister } from "react-hook-form/dist/types";
 
 interface IFormValues {
@@ -8,19 +7,18 @@ interface IFormValues {
 
 interface IProps {
   register: UseFormRegister<IFormValues>;
+  placeholder: string;
 }
-const InputText: FC<IProps> = ({ register }: IProps) => {
+const InputText: FC<IProps> = ({ register, placeholder }: IProps) => {
   return (
     <>
-      <TextField
-        id="outlined-basic"
-        label="Second name"
-        variant="outlined"
-        sx={{ width: "25rem" }}
+      <input
+        type=" text"
+        placeholder={placeholder}
         {...register("secondName", {
           required: {
             value: true,
-            message: "Required second name value",
+            message: "Required field",
           },
           maxLength: {
             value: 15,

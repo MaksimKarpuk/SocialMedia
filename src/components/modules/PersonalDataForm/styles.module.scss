@@ -2,13 +2,82 @@
 
 form {
   @include container;
+  max-width: 25rem;
+  margin: 5rem auto 0 auto;
   .inputs__text {
+    .text {
+      height: 4.5rem;
+      input {
+        width: 100%;
+        padding: 1rem;
+        background: none;
+        border: 0.0625rem solid $black;
+        border-radius: 0.3rem;
+      }
+      input::placeholder {
+        @include H16;
+        color: $black;
+      }
+      input:focus::placeholder {
+        opacity: 0.3;
+      }
+    }
+  }
+  .input__date {
+    height: 4.5rem;
+    input {
+      width: 100%;
+      padding: 0.7rem;
+      background: none;
+      border: 0.0625rem solid $black;
+      border-radius: 0.3rem;
+      @include H16;
+    }
+  }
+  .input__radios {
+    height: 3rem;
+    .radios {
+      display: flex;
+      gap: 1rem;
+      .input__radio {
+        display: flex;
+        gap: 0.3rem;
+        label {
+          @include H16;
+        }
+      }
+    }
+  }
+  .input__select {
+    height: 4.5rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    select {
+      width: 100%;
+      padding: 0.9rem;
+      background: none;
+      border: 0.0625rem solid $black;
+      border-radius: 0.3rem;
+      @include H16;
+    }
+  }
+  .input__checkbox {
+    height: 3rem;
+    .checkbox {
+      @include H16;
+      display: flex;
+      gap: 0.5rem;
+    }
+  }
+  button {
+    width: 100%;
+    padding: 0.7rem;
+    background-color: $mainBlue;
+    color: $white;
+    @include H16;
+    border-radius: 0.3rem;
   }
 }
-
 .error {
   @include H12;
   color: $red;

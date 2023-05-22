@@ -1,26 +1,42 @@
-import { FC } from 'react';
-import { UseFormRegister } from 'react-hook-form/dist/types';
+import { FC } from "react";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { UseFormRegister } from "react-hook-form/dist/types";
 
 interface IFormValues {
-  date?: string;
+  date?: Date;
 }
 
 interface IProps {
-  label: string;
   register: UseFormRegister<IFormValues>;
 }
-const InputDate: FC<IProps> = ({ label, register }: IProps) => {
+const InputDate: FC<IProps> = ({ register }: IProps) => {
   return (
     <>
-      <label>
-        {label}
-        <input
-          type="date"
-          {...register('date', {
-            required: true,
-          })}
-        />
-      </label>
+      <input
+        type="date"
+        {...register("birthdayDate", {
+          required: {
+            value: true,
+            message: "Required field",
+          },
+        })}
+      />
+      {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DemoContainer components={["DatePicker"]}>
+          <DatePicker
+            label="Birthday date"
+            {...register("date", {
+              required: {
+                value: true,
+                message: "Fill date field",
+              },
+            })}
+          />
+        </DemoContainer>
+      </LocalizationProvider> */}
     </>
   );
 };

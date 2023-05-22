@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
-import { IFirebase, IUser } from "./interfases";
+import { IFirebase, IPersonalData } from "./interfases";
 
 const firebaseConfig: IFirebase = {
   apiKey: "AIzaSyBb5AcEP0WYa-NUDQ_rMBCVg9jTdhZUPng",
@@ -16,7 +16,7 @@ const firebaseConfig: IFirebase = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export const addCollection = async (user: IUser) => {
+export const addCollection = async (user: IPersonalData) => {
   try {
     const userCollection = collection(db, "users");
     const docRef = await addDoc(userCollection, user);
@@ -26,7 +26,8 @@ export const addCollection = async (user: IUser) => {
   }
 };
 export const getUserCollection = async () => {
-  const users = await getDocs(collection(db, "users"));
-  console.log(users.docs);
+  const persons = await getDocs(collection(db, "users"));
+  console.log(persons.docs);
+  return persons.docs;
 };
 getUserCollection();

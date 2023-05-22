@@ -1,8 +1,8 @@
-import { FC } from 'react';
-import { UseFormRegister } from 'react-hook-form/dist/types';
+import { FC } from "react";
+import { UseFormRegister } from "react-hook-form/dist/types";
 
 interface IFormValues {
-  radio?: string;
+  gender?: string;
 }
 
 interface IProps {
@@ -13,16 +13,17 @@ interface IProps {
 const InputRadio: FC<IProps> = ({ label, register, value }: IProps) => {
   return (
     <>
-      <label>
-        <input
-          type="radio"
-          value={value}
-          {...register('radio', {
-            required: true,
-          })}
-        />
-        {label}
-      </label>
+      <input
+        type="radio"
+        value={value}
+        {...register("gender", {
+          required: {
+            value: true,
+            message: "Required field",
+          },
+        })}
+      />
+      <label>{label}</label>
     </>
   );
 };
