@@ -1,12 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IInitialState } from "../../interfases";
-import { v4 as uuidv4 } from "uuid";
 
 const initialState: IInitialState = {
   email: null,
   token: null,
   id: null,
-  tasks: [],
 };
 
 const userSlice = createSlice({
@@ -23,11 +21,9 @@ const userSlice = createSlice({
       state.token = null;
       state.id = null;
     },
-    addTask(state, { payload }) {
-      state.tasks.push({ id: uuidv4(), task: payload.taskName });
-    },
+    
   },
 });
 
-export const { setUser, removeUser, addTask } = userSlice.actions;
+export const { setUser, removeUser} = userSlice.actions;
 export default userSlice.reducer;

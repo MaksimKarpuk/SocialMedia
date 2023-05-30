@@ -2,9 +2,7 @@ export interface IInitialState {
   email: string | null;
   token: string | null;
   id: string | null;
-  tasks: [];
 }
-
 export interface IFirebase {
   apiKey: string;
   authDomain: string;

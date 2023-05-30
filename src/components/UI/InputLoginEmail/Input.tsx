@@ -10,6 +10,7 @@ const Input: FC<IProps> = ({ register, placeholder }) => {
         label="Email"
         variant="outlined"
         type="email"
+        
         placeholder={placeholder}
         {...register("email", {
           required: { value: true, message: "Email is required" },

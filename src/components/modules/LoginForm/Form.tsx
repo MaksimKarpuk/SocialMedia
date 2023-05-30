@@ -27,6 +27,7 @@ const Form: FC<IProps> = ({ title, handleClick }) => {
     console.log(data);
     reset();
   };
+  
   return (
     <>
       <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
