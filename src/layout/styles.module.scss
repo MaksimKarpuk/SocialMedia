@@ -1,12 +1,12 @@
 @import "../index.scss";
 
 .layout {
-  background: linear-gradient(104.11deg, #ff7e5f 14.52%, #feb567 87.26%);
   height: 100vh;
   .layout__container {
     display: flex;
     flex-direction: column;
     min-height: 100%;
+    background: linear-gradient(104.11deg, #ff7e5f 14.52%, #feb567 87.26%);
     .container__header {
     }
     .container__content {

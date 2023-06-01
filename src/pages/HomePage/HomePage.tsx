@@ -5,12 +5,12 @@ import style from "./styles.module.scss";
 import Button from "@mui/material/Button";
 import Popup from "../../components/UI/Popup/Popup";
 import TextArea from "../../components/UI/TextArea/TextArea";
-import { useGetTasksQuery, useSetTasksMutation } from "../../store/api/tasks";
-
-interface ITask {
-  id: number;
-  title: string;
-}
+import Tasks from "../../components/features/Task/Task";
+import {
+  useGetTasksQuery,
+  useSetTasksMutation,
+  useDeleteTasksMutation,
+} from "../../store/api/tasks";
 
 const HomePage: FC = () => {
   const { isAuth } = useAuth();
@@ -23,6 +23,7 @@ const HomePage: FC = () => {
     error,
   } = useGetTasksQuery();
   const [setTasks] = useSetTasksMutation();
+  const [deleteTasks] = useDeleteTasksMutation();
   const [isPopup, setIsPopup] = useState<boolean>(false);
   const [popupInfo, setPopupInfo] = useState<string>("");
   const handleTasks = async (popupInfo: string) => {
@@ -30,7 +31,10 @@ const HomePage: FC = () => {
       title: popupInfo,
     }).unwrap();
   };
-  const setTask = () => {
+  const handleDeleteTasks = async (id: number) => {
+    await deleteTasks(id).unwrap();
+  };
+  const setTask = (popupInfo: string) => {
     setIsPopup(false);
     handleTasks(popupInfo);
     setPopupInfo("");
@@ -52,16 +56,16 @@ const HomePage: FC = () => {
         </Button>
       </div>
       <div className={style.homepage__tasks}>
-        {data.map((task: ITask) => (
-          <div className={style.tasks__task} key={task.id}>
-            <div className={style.task__text}>{task.title}</div>
-          </div>
-        ))}
+        <div className={style.homepage__new_tasks}>
+          <Tasks data={data} deleteTask={handleDeleteTasks} />
+        </div>
+        <div className={style.homepage__inprogres_tasks}></div>
+        <div className={style.homepage__closed_tasks}></div>
       </div>
       {isPopup && (
         <div className={style.homepage__popup}>
           <Popup setIsPopup={setIsPopup} title="Task">
-            <div className={style.textarea}>
+            <div className={style.popup__textarea}>
               <TextArea
                 label="Task name"
                 setPopupInfo={setPopupInfo}
